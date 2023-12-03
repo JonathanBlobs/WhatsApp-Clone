@@ -213,20 +213,84 @@ class whatsAppController {
     });
 
     this.el.btnAttachPhoto.on('click', e=>{
+      this.el.inputPhoto.click();
+
+    });
+
+    this.el.inputPhoto.on('change', e=>{
+      [...this.el.inputPhoto.files].forEach(file=>{
+
+      });
 
     });
 
     this.el.btnAttachCamera.on('click', e=>{
 
+      this.closeAllMainPanel();
+      this.el.panelCamera.addClass('open');
+      this.el.panelCamera.css({
+        'height':'calc(100% - 120px)'
+
+      });
+
+    });
+
+    this.el.btnClosePanelCamera.on('click', e=>{
+
+      this.closeAllMainPanel();
+      this.el.panelMessagesContainer.show();
+
+    });
+
+    this.el.btnTakePicture.on('click', e=>{
+     
     });
 
     this.el.btnAttachDocument.on('click', e=>{
+
+      this.closeAllMainPanel();
+
+      this.el.panelDocumentPreview.addClass('open');
+      this.el.panelDocumentPreview.css({
+          'height':'calc(100% - 120px)'
+
+      });
+
+    });
+
+    this.el.btnClosePanelDocumentPreview.on('click', e=>{
+
+      this.closeAllMainPanel();
+      this.el.panelMessagesContainer.show();
+
+    });
+
+    this.el.btnSendDocument.on('click', e=>{
+
 
     });
 
     this.el.btnAttachContact.on('click', e=>{
 
+      this.el.modalContacts.show();
+
     });
+
+    this.el.btnCloseModalContacts.on('click', e=>{
+
+      this.closeAllMainPanel();
+      this.el.panelMessagesContainer.show();
+
+    });
+
+  }
+
+    closeAllMainPanel(){
+
+    this.el.panelMessagesContainer.hide();
+    this.el.panelDocumentPreview.removeClass('open');
+    this.el.panelCamera.removeClass('open');
+    this.el.modalContacts.hide();
 
   }
 
@@ -241,6 +305,7 @@ class whatsAppController {
 
     this.el.panelAddContact.hide();
     this.el.panelEditProfile.hide();
+    this.el.panelCamera.hide();
 
   }
 
