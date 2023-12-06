@@ -7,14 +7,14 @@ class whatsAppController {
     this.elementsPrototype();
     this.loadElements();
     this.initEvents();
-    
+
   }
 
   loadElements() {
 
     this.el = {};
 
-    document.querySelectorAll('[id]').forEach(element=>{
+    document.querySelectorAll('[id]').forEach(element => {
 
       this.el[Format.getCamelCase(element.id)] = element;
 
@@ -47,7 +47,7 @@ class whatsAppController {
 
     Element.prototype.on = function (events, fn) {
 
-      events.split(' ').forEach(event=>{
+      events.split(' ').forEach(event => {
 
         this.addEventListener(event, fn);
 
@@ -57,7 +57,7 @@ class whatsAppController {
 
     }
 
-    Element.prototype.css = function(styles){
+    Element.prototype.css = function (styles) {
 
       for (let name in styles) {
 
@@ -69,7 +69,7 @@ class whatsAppController {
 
     }
 
-    Element.prototype.addClass = function(name){
+    Element.prototype.addClass = function (name) {
 
       this.classList.add(name);
       return this;
@@ -96,17 +96,17 @@ class whatsAppController {
 
     }
 
-    HTMLFormElement.prototype.getForm = function (){
+    HTMLFormElement.prototype.getForm = function () {
 
-      return new FormData (this);
+      return new FormData(this);
 
     }
 
-    HTMLFormElement.prototype.toJSON = function (){
+    HTMLFormElement.prototype.toJSON = function () {
 
       let json = {};
 
-      this.getForm().forEach((value, key)=>{
+      this.getForm().forEach((value, key) => {
 
         json[key] = value;
 
@@ -118,14 +118,14 @@ class whatsAppController {
 
   }
 
-  initEvents(){
+  initEvents() {
 
-    this.el.myPhoto.on('click', e=>{
+    this.el.myPhoto.on('click', e => {
 
       this.closeAllLeftPanel();
 
       this.el.panelEditProfile.show();
-      setTimeout(()=>{
+      setTimeout(() => {
 
         app.el.panelEditProfile.addClass('open');
 
@@ -133,42 +133,42 @@ class whatsAppController {
 
     });
 
-    this.el.btnNewContact.on('click', e =>{
+    this.el.btnNewContact.on('click', e => {
 
       this.closeAllLeftPanel();
 
       this.el.panelAddContact.show();
 
-      setTimeout(()=>{
+      setTimeout(() => {
 
-        app.el.panelAddContact.addClass('open');    
+        app.el.panelAddContact.addClass('open');
 
       }, 300);
-      
+
 
     });
 
-    this.el.btnClosePanelEditProfile.on('click', e=>{
+    this.el.btnClosePanelEditProfile.on('click', e => {
 
       this.el.panelEditProfile.removeClass('open');
 
     });
 
-    this.el.btnClosePanelAddContact.on('click', e=>{
+    this.el.btnClosePanelAddContact.on('click', e => {
 
       this.el.panelAddContact.removeClass('open');
 
     });
 
-    this.el.photoContainerEditProfile.on('click', e=>{
+    this.el.photoContainerEditProfile.on('click', e => {
 
       this.el.inputProfilePhoto.click();
 
     });
 
-    this.el.inputNamePanelEditProfile.on('keypress', e=>{
+    this.el.inputNamePanelEditProfile.on('keypress', e => {
 
-      if (e.key === 'Enter'){
+      if (e.key === 'Enter') {
 
         e.preventDefault();
         this.el.btnSavePanelEditProfile.click();
@@ -177,26 +177,26 @@ class whatsAppController {
 
     });
 
-    this.el.btnSavePanelEditProfile.on('click', e=>{
+    this.el.btnSavePanelEditProfile.on('click', e => {
 
 
     });
 
-    this.el.formPanelAddContact.on('submit', e=>{
+    this.el.formPanelAddContact.on('submit', e => {
 
       e.preventDefault();
 
-      let formData = new FormData (this.el.formPanelAddContact);
+      let formData = new FormData(this.el.formPanelAddContact);
 
     });
 
-    this.el.contactsMessagesList.querySelectorAll('.contact-item').forEach(item=>{
+    this.el.contactsMessagesList.querySelectorAll('.contact-item').forEach(item => {
 
-      item.on('click', e=>{
+      item.on('click', e => {
 
         this.el.home.hide();
         this.el.main.css({
-          display:'flex'
+          display: 'flex'
 
         });
 
@@ -204,7 +204,7 @@ class whatsAppController {
 
     });
 
-    this.el.btnAttach.on('click', e=>{
+    this.el.btnAttach.on('click', e => {
 
       e.stopPropagation();
       this.el.menuAttach.addClass('open');
@@ -212,78 +212,78 @@ class whatsAppController {
 
     });
 
-    this.el.btnAttachPhoto.on('click', e=>{
+    this.el.btnAttachPhoto.on('click', e => {
       this.el.inputPhoto.click();
 
     });
 
-    this.el.inputPhoto.on('change', e=>{
-      [...this.el.inputPhoto.files].forEach(file=>{
+    this.el.inputPhoto.on('change', e => {
+      [...this.el.inputPhoto.files].forEach(file => {
 
       });
 
     });
 
-    this.el.btnAttachCamera.on('click', e=>{
+    this.el.btnAttachCamera.on('click', e => {
 
       this.closeAllMainPanel();
       this.el.panelCamera.addClass('open');
       this.el.panelCamera.css({
-        'height':'calc(100% - 120px)'
+        'height': 'calc(100% - 120px)'
 
       });
 
     });
 
-    this.el.btnClosePanelCamera.on('click', e=>{
+    this.el.btnClosePanelCamera.on('click', e => {
 
       this.closeAllMainPanel();
       this.el.panelMessagesContainer.show();
 
     });
 
-    this.el.btnTakePicture.on('click', e=>{
-     
+    this.el.btnTakePicture.on('click', e => {
+
     });
 
-    this.el.btnAttachDocument.on('click', e=>{
+    this.el.btnAttachDocument.on('click', e => {
 
       this.closeAllMainPanel();
 
       this.el.panelDocumentPreview.addClass('open');
       this.el.panelDocumentPreview.css({
-          'height':'calc(100% - 120px)'
+        'height': 'calc(100% - 120px)'
 
       });
 
     });
 
-    this.el.btnClosePanelDocumentPreview.on('click', e=>{
+    this.el.btnClosePanelDocumentPreview.on('click', e => {
 
       this.closeAllMainPanel();
       this.el.panelMessagesContainer.show();
 
     });
 
-    this.el.btnSendDocument.on('click', e=>{
+    this.el.btnSendDocument.on('click', e => {
 
 
     });
 
-    this.el.btnAttachContact.on('click', e=>{
+    this.el.btnAttachContact.on('click', e => {
 
       this.el.modalContacts.show();
 
     });
 
-    this.el.btnCloseModalContacts.on('click', e=>{
+    this.el.btnCloseModalContacts.on('click', e => {
 
       this.closeAllMainPanel();
       this.el.panelMessagesContainer.show();
 
     });
 
-    this.el.btnSendMicrophone.on('click', e=>{
+    this.el.btnSendMicrophone.on('click', e => {
 
       this.el.recordMicrophone.show();
       this.el.btnSendMicrophone.hide();
@@ -292,25 +292,72 @@ class whatsAppController {
 
     });
 
-    this.el.btnCancelMicrophone.on('click', e=>{
+    this.el.btnCancelMicrophone.on('click', e => {
 
       this.closeRecordMicrophone();
 
     });
 
-    this.el.btnFinishMicrophone.on('click', e=>{
+    this.el.btnFinishMicrophone.on('click', e => {
 
       this.closeRecordMicrophone();
+
+    });
+
+    this.el.inputText.on('keypress', e => {
+
+      if (e.key === 'Enter' && !e.ctrlKey) {
+
+        e.preventDefault();
+        this.el.btnSend.click();
+
+      }
+
+    });
+
+    this.el.inputText.on('keyup', e => {
+
+      if (this.el.inputText.innerHTML.length) {
+
+        this.el.inputPlaceholder.hide();
+        this.el.btnSendMicrophone.hide();
+        this.el.btnSend.show();
+
+      } else {
+
+        this.el.inputPlaceholder.show();
+        this.el.btnSendMicrophone.show();
+        this.el.btnSend.hide();
+
+      }
+
+    });
+
+    this.el.btnSend.on('click', e => {
+
+    });
+
+    this.el.btnEmojis.on('click', e=>{
+
+      this.el.panelEmojis.toggleClass('open');
+
+    });
+
+    this.el.panelEmojis.querySelectorAll('.emojik').forEach(emoji=>{
+
+      emoji.on('click', e=>{
+
+      });
 
     });
 
   }
 
-  startRecordMicrophoneTime(){
+  startRecordMicrophoneTime() {
 
     let start = Date.now();
 
-    this._recordMicrophoneInterval = setInterval(()=>{
+    this._recordMicrophoneInterval = setInterval(() => {
 
       this.el.recordMicrophoneTimer.innerHTML = Format.toTime(Date.now() - start);
 
@@ -318,7 +365,7 @@ class whatsAppController {
 
   }
 
-  closeRecordMicrophone(){
+  closeRecordMicrophone() {
 
     this.el.recordMicrophone.hide();
     this.el.btnSendMicrophone.show();
@@ -326,7 +373,7 @@ class whatsAppController {
 
   }
 
-    closeAllMainPanel(){
+  closeAllMainPanel() {
 
     this.el.panelMessagesContainer.hide();
     this.el.panelDocumentPreview.removeClass('open');
@@ -335,14 +382,14 @@ class whatsAppController {
 
   }
 
-  closeMenuAttach(e){
+  closeMenuAttach(e) {
 
     document.removeEventListener('click', this.closeMenuAttach);
     this.el.menuAttach.removeClass('open');
 
   }
 
-  closeAllLeftPanel(){
+  closeAllLeftPanel() {
 
     this.el.panelAddContact.hide();
     this.el.panelEditProfile.hide();
