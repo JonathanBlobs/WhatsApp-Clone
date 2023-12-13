@@ -233,6 +233,8 @@ class whatsAppController {
 
       });
 
+      this._camera = new cameraController(this.el.videoCamera);
+
     });
 
     this.el.btnClosePanelCamera.on('click', e => {
